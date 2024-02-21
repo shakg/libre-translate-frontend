@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  libretranslate:
+    image: libretranslate/libretranslate
+    ports:
+      - "4848:4848"  # Expose LibreTranslate API port
+  
+  angular-app:
+    build: .  # Path to your Angular app Dockerfile
+    ports:
+      - "4200:4200"  # Expose Angular app port
+    depends_on:
+      - libretranslate  # Ensure LibreTranslate service is started first
